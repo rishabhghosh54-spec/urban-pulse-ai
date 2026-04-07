@@ -204,7 +204,7 @@ def render_header():
             </div>
         </div>
     </div>
-    """.format(datetime=datetime), unsafe_allow_html=True)
+    """.format(datetime=datetime.now()), unsafe_allow_html=True)
 
 
 def render_upi_badge(score: float, category: str) -> str:
