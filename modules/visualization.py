@@ -309,10 +309,10 @@ def chart_forecast(forecasts: List[Dict], horizon: str = "24h") -> go.Figure:
 
 # ─── City Comparison Chart ────────────────────────────────────────────────────
 def chart_city_comparison(comparison_data: List[Dict]) -> go.Figure:
-    cities = [d["display"] for d in comparison_data]
-    upi_vals = [d["upi"] for d in comparison_data]
-    aqi_vals = [d["aqi"] for d in comparison_data]
-    crowd_vals = [d["crowd"] for d in comparison_data]
+    cities = [d.get("display", "Unknown") for d in comparison_data]
+    upi_vals = [d.get("upi", 0) for d in comparison_data]
+    aqi_vals = [d.get("aqi", 0) for d in comparison_data]
+    crowd_vals = [d.get("crowd", 0) for d in comparison_data]
     colors = [UPI_COLORS.get(d["category"], "#eab308") for d in comparison_data]
 
     fig = make_subplots(
