@@ -168,47 +168,45 @@ def glass_card(content: str, border_color: str = "rgba(99,132,255,0.2)", padding
 
 
 def render_header():
+    from datetime import datetime
     current_time = datetime.now().strftime("%H:%M:%S")
 
-    st.markdown(f"""
-    <div style="
-        display:flex; align-items:center; justify-content:space-between;
-        padding: 14px 0 8px 0;
-        border-bottom: 1px solid rgba(99,132,255,0.12);
-        margin-bottom: 18px;
-    ">
-        <div style="display:flex; align-items:center; gap:12px;">
-            <div style="
-                background: linear-gradient(135deg, #1e40af, #6366f1);
-                border-radius: 10px;
-                padding: 8px 12px;
-                font-size: 20px;
-            ">🌐</div>
-            <div>
-                <div style="font-size:20px; font-weight:800; color:#e2e8f0;">
-                    URBAN PULSE AI
-                </div>
-                <div style="font-size:11px; color:#475569;">
-                    GLOBAL SMART CITY INTELLIGENCE PLATFORM
-                </div>
-            </div>
-        </div>
+    html = f"""
+<div style="display:flex; align-items:center; justify-content:space-between;
+padding:14px 0 8px 0; border-bottom:1px solid rgba(99,132,255,0.12); margin-bottom:18px;">
 
-        <div style="display:flex; gap:20px; align-items:center;">
-            <div style="text-align:right;">
-                <div style="font-size:11px; color:#475569;">SYSTEM STATUS</div>
-                <div style="font-size:12px; color:#22c55e; font-weight:600;">● OPERATIONAL</div>
-            </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+        <div style="background: linear-gradient(135deg, #1e40af, #6366f1);
+        border-radius:10px; padding:8px 12px; font-size:20px;">🌐</div>
 
-            <div style="text-align:right;">
-                <div style="font-size:11px; color:#475569;">LAST SYNC</div>
-                <div style="font-size:12px; color:#94a3b8; font-weight:600;">
-                    {current_time}
-                </div>
+        <div>
+            <div style="font-size:20px; font-weight:800; color:#e2e8f0;">
+                URBAN PULSE AI
+            </div>
+            <div style="font-size:11px; color:#475569;">
+                GLOBAL SMART CITY INTELLIGENCE PLATFORM
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+
+    <div style="display:flex; gap:20px; align-items:center;">
+        <div style="text-align:right;">
+            <div style="font-size:11px; color:#475569;">SYSTEM STATUS</div>
+            <div style="font-size:12px; color:#22c55e; font-weight:600;">● OPERATIONAL</div>
+        </div>
+
+        <div style="text-align:right;">
+            <div style="font-size:11px; color:#475569;">LAST SYNC</div>
+            <div style="font-size:12px; color:#94a3b8; font-weight:600;">
+                {current_time}
+            </div>
+        </div>
+    </div>
+
+</div>
+"""
+
+    st.markdown(html, unsafe_allow_html=True)
 
 
 def render_upi_badge(score: float, category: str) -> str:
