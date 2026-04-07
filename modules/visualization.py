@@ -265,7 +265,7 @@ def chart_forecast(forecasts: List[Dict], horizon: str = "24h") -> go.Figure:
     labels = [f["hour_label"] for f in forecasts]
     upi_vals = [f["upi"] for f in forecasts]
     aqi_vals = [f["aqi"] for f in forecasts]
-    crowd_vals = [f["crowd"] for f in forecasts]
+    crowd_vals = [f.get("crowd", f.get("crowd_score", 0)) for f in forecasts]
     colors = [UPI_COLORS.get(f["category"], "#eab308") for f in forecasts]
 
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.6, 0.4], vertical_spacing=0.08)
@@ -312,7 +312,7 @@ def chart_city_comparison(comparison_data: List[Dict]) -> go.Figure:
     cities = [d.get("display", "Unknown") for d in comparison_data]
     upi_vals = [d.get("upi", 0) for d in comparison_data]
     aqi_vals = [d.get("aqi", 0) for d in comparison_data]
-    crowd_vals = [d.get("crowd", 0) for d in comparison_data]
+    crowd_vals = [d.get("crowd_score", 0) for d in comparison_data]
     colors = [UPI_COLORS.get(d["category"], "#eab308") for d in comparison_data]
 
     fig = make_subplots(
